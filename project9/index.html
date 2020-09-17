@@ -3,9 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>project 9 by uhk</title>
 </head>
 <body>
-    
-</body>
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+    <script>
+
+
+//break on 
+//attribute modifaction  it tell the reason of attributre changes
+      const dogs = [
+        { name: "Snickers", age: 2 },
+        { name: "hugo", age: 8 },
+      ];
+
+      function makeGreen() {
+        const p = document.querySelector("p");
+        p.style.color = "#BADA55";
+        p.style.fontSize = "50px";
+      }
+
+      // Regular
+      console.log("welcome");
+
+      // Interpolated
+      console.log("I am  %s and i am studnt!", "uhk");
+
+      // Styled
+      console.log(
+        "%c I am  university student",
+        "font-size:50px; background:red"
+      );
+
+      // warning!
+      console.warn("stay alert");
+
+      // Error :|
+      console.error("error");
+
+      // Info
+      console.info("this is console");
+
+      // Testing
+      const p = document.querySelector("p");
+      console.assert("1" === 1, "that is wrong!"); //assert use for comapre only wrong info will be shown in console
+      console.assert(p.classList.contains("fddw"), "that is wrong!");
+
+      // clearing
+      // console.clear();
+
+      // Viewing DOM Elements
+      console.log(p);
+      console.dir(p);   //show complete method
+
+      // Grouping together
+      dogs.forEach(dog => {
+        console.group(`${dog.name}`);
+        console.log(`this is ${dog.name}`)
+        console.log(`${dog.name} is ${dog.age} year old `);
+        console.log(`${dog.name} is ${dog.age*7} year old `);
+        console.log(`This is a ${dog.name}`);
+        console.log(`${dog.name} is ${dog.name} years odl`);
+        console.groupEnd('this is ${dog.name}');
+      });
+
+      // counting
+      console.count("uhk");
+      console.count("uhk");
+      console.count("uhk");
+      console.count("harry");
+      console.count("harry");
+      console.count("harry");
+      console.count("harry");
+
+      // timing
+      console.dir(console);
+      const endpoint =
+        "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+      console.time("fetching data");//calualte time
+      fetch(endpoint)
+        .then((data) => data.json())
+        .then((data) => {
+          console.log(data);
+          console.timeEnd("fetching data");
+        });
+    </script>
+    </body>
 </html>
