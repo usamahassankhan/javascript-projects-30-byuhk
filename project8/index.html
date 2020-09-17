@@ -6,8 +6,97 @@
     <title>Document</title>
 </head>
 <body>
-    <p>p</p>
-    <p>wao</p>
-    <p>nice</p>
+    <body>
+        <canvas id="draw" width="800" height="800">    <!--canvas has by defalt 800*800 width height -->
+      
+      
+        </canvas>
+      
+      
+      
+        <script>
+      
+          const canvas = document.querySelector("#draw");
+      
+          const ctx = canvas.getContext("2d") 
+      
+          canvas.width = window.innerWidth;     //convert canvas defualt width in to scree scize-
+          canvas.height = window.innerHeight;
+       
+      
+          ctx.strokeStyle = "red" //start from red color
+          ctx.lineJoin = "round";  // create round when 2 line join
+          ctx.lineCap = "round"  //starting point of line is also round
+          ctx.lineWidth = 100; 
+      
+          let isDrawing = false;
+      
+          let lastX = 0;
+          let lastY = 0;
+          let hue = 0;
+      
+          let direction = true;
+      
+          function draw(event) {
+      
+            if (!isDrawing) {
+      
+              return null;
+      
+            } else {
+      
+              console.log(event)
+      
+              ctx.strokeStyle = `hsl(${hue},100%,50%)`//here stroke style is mlti colorr
+      
+      
+              ctx.beginPath();
+              ctx.moveTo(lastX, lastY);
+              ctx.lineTo(event.offsetX, event.offsetY)
+              ctx.stroke();
+      
+              lastX = event.offsetX;
+              lastY = event.offsetY
+      
+              hue++;
+      
+      
+              if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+      
+                direction = !direction
+              }
+      
+      
+      
+              if (direction) {
+      
+                ctx.lineWidth++;;
+              } else {
+      
+                ctx.lineWidth--;
+              }
+      
+      
+      
+              if (hue >= 360) {
+      
+                hue = 0;
+              }
+      
+            }
+      
+          }
+      
+          canvas.addEventListener("mousemove", draw)
+          canvas.addEventListener("mousedown", (event) => {
+            isDrawing = true
+            lastX = event.offsetX;
+            lastY = event.offsetY
+      
+          });
+          canvas.addEventListener("mouseup", () => isDrawing = false)
+          canvas.addEventListener("mouseout", () => isDrawing = false)
+      
+        </script>
 </body>
 </html>
