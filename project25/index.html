@@ -17,11 +17,7 @@
             box-sizing: border-box;
           }
     
-          *,
-          *:before,
-          *:after {
-            box-sizing: inherit;
-          }
+          
     
           div {
             width: 100%;
@@ -47,7 +43,7 @@
           const button = document.querySelector("button");
           function logText(e) {
             console.log(this.classList.value);
-            e.stopPropagation();
+            e.stopPropagation();  //each chicld div repreresnt alone
           }
           divs.forEach((div) =>
             div.addEventListener("click", logText, {
@@ -62,7 +58,7 @@
               console.log("Click Me");
             },
             {
-              once: true,
+              once: true,    //only one time button click
             }
           );
         </script>
