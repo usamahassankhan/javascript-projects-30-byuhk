@@ -4,8 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="wrapper">
+        <video
+          class="flex"
+          width="765"
+          height="430"
+          src="652333414.mp4"
+          loop
+          controls
+        ></video>
+        <div class="speed">
+          <div class="speed-bar">1×</div>
+        </div>
+      </div>
+      <button onclick="defaultPlaybackRate()">click to default playrate</button>
+      <script>
+        const speed = document.querySelector(".speed");
+        const bar = speed.querySelector(".speed-bar");
+        const video = document.querySelector(".flex");
+  
+        function handler(e) {
+          const y = e.pageY - this.offsetTop;//page y curent pos offset top take top pos offset height take all
+          const percent = y / this.offsetHeight;
+          const min = 0.2;
+          const max = 5;
+          const height = Math.round(percent * 100) + "%";
+          const playbackRate = percent * (max - min) + min;
+          console.log(playbackRate);
+          bar.style.height = height;
+          bar.textContent = playbackRate.toFixed(1) + "×";
+          video.playbackRate = playbackRate;
+        }
+        function defaultPlaybackRate() {
+          bar.textContent = "1×";
+          bar.style.height = "16.3%";
+          video.playbackRate = 1;
+        }
+        speed.addEventListener("mousemove", handler);
+      </script>
 </body>
 </html>
